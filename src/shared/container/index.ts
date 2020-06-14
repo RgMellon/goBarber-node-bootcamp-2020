@@ -10,7 +10,7 @@ import UsersRepository from '@modules/users/infra/typeorm/repositories/UsersRepo
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 
 import IUserTokensRepository from '@modules/users/repositories/IUserTokenRepository';
-// import UserTokensRepository from '@modules/users/infra/typeorm/repositories/'
+import UserTokensRepository from '@modules/users/infra/typeorm/repositories/UserTokensRepository';
 /**  IAppointmentsRepository garante que a var que passamos como
  *  segundo parametro tenha o formato do IAppointmentsRepository.
  * */
@@ -23,6 +23,11 @@ container.registerSingleton<IAppointmentsRepository>(
 container.registerSingleton<IUsersRepository>(
   'UsersRepository',
   UsersRepository,
+);
+
+container.registerSingleton<IUserTokensRepository>(
+  'UserTokensRepository',
+  UserTokensRepository,
 );
 
 // container.registerSingleton<IUserTokensRepository>('UserTokensRepository');
