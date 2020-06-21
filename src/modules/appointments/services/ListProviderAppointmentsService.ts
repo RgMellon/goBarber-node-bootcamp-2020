@@ -27,10 +27,7 @@ class LisProviderAppointmentsService {
     year,
     day,
   }: IRequest): Promise<Appointment[]> {
-    const cacheData = await this.cacheProvider.recover('ola');
-    console.log(':::::::::::::::::::::');
-    console.log(cacheData);
-    console.log(':::::::::::::::::::::');
+    // const cacheData = await this.cacheProvider.recover('ola');
 
     const appointments = await this.appointmentsRepository.findAllInDayFromProvider(
       {
@@ -41,7 +38,6 @@ class LisProviderAppointmentsService {
       },
     );
 
-    // await this.cacheProvider.save('ola', 'au au');
     return appointments;
   }
 }
