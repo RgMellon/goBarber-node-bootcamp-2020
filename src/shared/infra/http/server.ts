@@ -1,4 +1,5 @@
 import 'reflect-metadata';
+import 'dotenv/config';
 
 import express, { Request, Response, NextFunction } from 'express';
 import 'express-async-errors';
@@ -19,7 +20,7 @@ const app = express();
 app.use(cors());
 
 app.use(express.json());
-app.use('/files', express.static(uploadConfig.tempPath));
+
 app.use(routes);
 
 app.use(errors());
@@ -41,6 +42,8 @@ app.use(
     });
   },
 );
+
+app.use('/files', express.static(uploadConfig.uploadFolder));
 
 app.listen(3333, () => {
   console.log('Server started  on port 3333 🐥🐥');
