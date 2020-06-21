@@ -10,10 +10,7 @@ import IMailTemplateProvider from './MailTemplateProvider/models/IMailTemplatePr
 import HandlebarsMailTemplateProvider from './MailTemplateProvider/implementations/HandlebarsMailTemplateProvider';
 
 import './StorageProvider';
-// container.registerSingleton<IStorageProvider>(
-//   'StorageProvider',
-//   DiskStorageProvider,
-// );
+import './CacheProvider';
 
 container.registerSingleton<IMailTemplateProvider>(
   'MailTemplateProvider',
