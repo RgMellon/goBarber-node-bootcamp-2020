@@ -140,7 +140,7 @@ O projeto foi feito utilizando das seguines tecnologias
 ```json
 
   #rota para se autenticar
-  localhost:3333/sessions
+  (POST) - localhost:3333/sessions
 
   #request body
 
@@ -171,7 +171,7 @@ O projeto foi feito utilizando das seguines tecnologias
 ```json
 
   #rota para se registrar
-  localhost:3333/users
+  (POST) -  localhost:3333/users
 
   #request body
 
@@ -196,10 +196,12 @@ O projeto foi feito utilizando das seguines tecnologias
 
 ### Update avatar
 
+\*\* O usuário deve estar logado, enviando Bearer token
+
 ```json
 
   #rota update avatar
-  localhost:3333/users
+  (PATCH) -  localhost:3333/users/avatar
 
   #request multipart
 
@@ -217,6 +219,417 @@ O projeto foi feito utilizando das seguines tecnologias
   "updated_at": "2020-07-15T01:08:42.658Z",
   "avatar_url": "http://localhost:3333/files/cd646e2b23b1967e74c6-eeeeee.jpeg"
 }
+
+```
+
+### Update profile
+
+\*\* O usuário deve estar logado, enviando Bearer token
+
+```json
+
+  #rota update profile ()
+  (PUT) -  localhost:3333/profile
+
+  #request body
+
+  {
+    "name": "Josezao2",
+    "email": "teste243@mail.com",
+    "password": "1234561234",
+    "old_password": "1234324342",
+  }
+
+  # retorno do esperado
+
+  {
+    "id": "63335cb3-4340-42de-a8c9-86a3f96d240c",
+    "name": "Josezao212",
+    "email": "teste243@mail.com",
+    "avatar": "103646e10860909d6d32-45109055.jpeg",
+    "created_at": "2020-07-05T01:11:38.550Z",
+    "updated_at": "2020-07-15T01:52:25.215Z",
+    "avatar_url": "http://localhost:3333/files/103646e10860909d6d32-45109055.jpeg"
+  }
+
+```
+
+### Resete password
+
+\*\* O usuário deve estar logado, enviando Bearer token
+
+```json
+
+  #rota Resete password ()
+  (POST) -  localhost:3333/password/reset
+
+  #request body
+
+  {
+	"token": "c4b28134-f951-41dc-ba3f-f84b77387fe2",
+	"password": "12312332",
+	"password_confirmation": "123232332"
+}
+
+# retorno do esperado
+
+
+```
+
+### Esqueci senha
+
+\*\* O usuário deve estar logado, enviando Bearer token
+
+```json
+
+  #rota esqueci minha senha
+  (POST) -  localhost:3333/password/forgot
+
+  #request body
+
+  {
+	  "email": "teste243@mail.com"
+  }
+
+# retorno do esperado
+ (204) - no content
+
+
+```
+
+### Criar agendamento
+
+\*\* O usuário deve estar logado, enviando Bearer token
+
+```json
+
+  #rota criar agendamento
+  (Post) -  localhost:3333/appointments
+
+  #request body
+
+  {
+	  "provider_id": "d4a99b8c-983c-4b3d-ad85-d1ab64d53648",
+	  "date": "2020-07-15 10:00:00"
+  }
+
+  # retorno do esperado
+
+  {
+    "provider_id": "d4a99b8c-983c-4b3d-ad85-d1ab64d53648",
+    "user_id": "63335cb3-4340-42de-a8c9-86a3f96d240c",
+    "date": "2020-07-15T13:00:00.000Z",
+    "id": "54d49229-07d9-41d8-acb2-e6aab8851ac6"
+  }
+
+```
+
+### Listar prestadores
+
+\*\* O usuário deve estar logado, enviando Bearer token
+
+```json
+
+  #rota listar prestadores
+  (GET) -  localhost:3333/providers
+
+  #request body
+
+  ---
+
+  # retorno do esperado
+  [
+    {
+      "id": "de408c5e-0c87-46f1-9e8e-b587b6e009fd",
+      "name": "mocinga baigula",
+      "email": "mocinga@mail.com",
+      "avatar": "1e2377a3d5f1f916a1b6-247731.486281-Zatnikotel.jpg",
+      "created_at": "2020-06-21T22:05:41.314Z",
+      "updated_at": "2020-07-02T01:54:55.768Z",
+      "avatar_url": "http://localhost:3333/files/1e2377a3d5f1f916a1b6-247731.486281-Zatnikotel.jpg"
+    },
+    {
+      "id": "63335cb3-4340-42de-a8c9-86a3f96d240c",
+      "name": "Tony Maneiro",
+      "email": "tony@mail.com",
+      "avatar": null,
+      "created_at": "2020-07-05T01:11:38.550Z",
+      "updated_at": "2020-07-05T01:11:38.550Z",
+      "avatar_url": null
+    }
+  ]
+```
+
+### Listar appointments
+
+\*\* O usuário deve estar logado, enviando Bearer token
+
+```json
+
+  #rota listar agendamento
+  (GET) -  localhost:3333/appointments
+
+  #request body
+
+  ---
+
+  # retorno do esperado
+  [
+    {
+      "id": "e5b2c4f9-76a9-4861-9731-280c1d1c47f2",
+      "provider_id": "ea854538-8dea-4aa0-93e8-050272d9c7fb",
+      "date": "2020-04-21T23:00:00.000Z"
+    }
+  ]
+
+```
+
+### Listar mes disponivel do prestador
+
+\*\* O usuário deve estar logado, enviando Bearer token
+
+```json
+
+  #rota listar mes disponivel do prestador (o id do prestador deve ser passado)
+  (GET) -  localhost:3333/providers/ea854538-8dea-4aa0-93e8-050272d9c7fb/month-availability
+
+  #request body
+
+  ---
+
+  # retorno do esperado
+  [
+    {
+      "day": 1,
+      "available": true
+    },
+    {
+      "day": 2,
+      "available": true
+    },
+    {
+      "day": 3,
+      "available": true
+    },
+    {
+      "day": 4,
+      "available": true
+    },
+    {
+      "day": 5,
+      "available": true
+    },
+    {
+      "day": 6,
+      "available": true
+    },
+    {
+      "day": 7,
+      "available": true
+    },
+    {
+      "day": 8,
+      "available": true
+    },
+    {
+      "day": 9,
+      "available": true
+    },
+    {
+      "day": 10,
+      "available": true
+    },
+    {
+      "day": 11,
+      "available": true
+    },
+    {
+      "day": 12,
+      "available": true
+    },
+    {
+      "day": 13,
+      "available": true
+    },
+    {
+      "day": 14,
+      "available": true
+    },
+    {
+      "day": 15,
+      "available": true
+    },
+    {
+      "day": 16,
+      "available": true
+    },
+    {
+      "day": 17,
+      "available": true
+    },
+    {
+      "day": 18,
+      "available": true
+    },
+    {
+      "day": 19,
+      "available": true
+    },
+    {
+      "day": 20,
+      "available": true
+    },
+    {
+      "day": 21,
+      "available": true
+    },
+    {
+      "day": 22,
+      "available": true
+    },
+    {
+      "day": 23,
+      "available": true
+    },
+    {
+      "day": 24,
+      "available": true
+    },
+    {
+      "day": 25,
+      "available": true
+    },
+    {
+      "day": 26,
+      "available": true
+    },
+    {
+      "day": 27,
+      "available": true
+    },
+    {
+      "day": 28,
+      "available": true
+    },
+    {
+      "day": 29,
+      "available": true
+    },
+    {
+      "day": 30,
+      "available": true
+    }
+  ]
+
+```
+
+### Listar dias disponivel do prestador
+
+\*\* O usuário deve estar logado, enviando Bearer token
+
+```json
+
+  #rota listar os dias disponivel do prestador (o id do prestador deve ser passado)
+  (GET) -  localhost:3333/providers/ea854538-8dea-4aa0-93e8-050272d9c7fb/day-availability
+
+  #request body
+
+  {
+    "day": 22,
+    "month": 6,
+    "year": 2020
+  }
+
+  # retorno do esperado
+  [
+    {
+      "hour": 8,
+      "available": true
+    },
+    {
+      "hour": 9,
+      "available": true
+    },
+    {
+      "hour": 10,
+      "available": true
+    },
+    {
+      "hour": 11,
+      "available": true
+    },
+    {
+      "hour": 12,
+      "available": true
+    },
+    {
+      "hour": 13,
+      "available": true
+    },
+    {
+      "hour": 14,
+      "available": true
+    },
+    {
+      "hour": 15,
+      "available": true
+    },
+    {
+      "hour": 16,
+      "available": true
+    },
+    {
+      "hour": 17,
+      "available": true
+    }
+  ]
+
+```
+
+### Listar agendamento do prestador
+
+\*\* O usuário deve estar logado, enviando Bearer token
+
+```json
+
+  #rota listar o agendamentos do prestador
+  (GET) -  localhost:3333/appointments/me
+
+  #request body
+
+  {
+    "day" : 20,
+    "month": 6,
+    "year": 2020
+  }
+
+  # retorno do esperado
+  [
+  {
+    "id": "234a8322-0dc8-424b-aa49-08dc0eee7c1a",
+    "provider_id": "8495069c-062d-4c96-876e-924526c36b6e",
+    "user_id": "ffed64ad-0bfd-4b55-a619-b3b422252867",
+    "date": "2020-06-20T11:00:00.000Z"
+  },
+  {
+    "id": "244990e3-1856-4dc5-82bc-b943e29b0f46",
+    "provider_id": "8495069c-062d-4c96-876e-924526c36b6e",
+    "user_id": "ffed64ad-0bfd-4b55-a619-b3b422252867",
+    "date": "2020-06-20T13:00:00.000Z"
+  },
+  {
+    "id": "1c7f825f-03f8-4f3c-97a3-c9c9405a8db0",
+    "provider_id": "8495069c-062d-4c96-876e-924526c36b6e",
+    "user_id": "ffed64ad-0bfd-4b55-a619-b3b422252867",
+    "date": "2020-06-20T15:00:00.000Z"
+  },
+  {
+    "id": "bbfa4ff8-8ccd-4166-a305-c6e16c31e602",
+    "provider_id": "8495069c-062d-4c96-876e-924526c36b6e",
+    "user_id": "ffed64ad-0bfd-4b55-a619-b3b422252867",
+    "date": "2020-06-20T17:00:00.000Z"
+  }
+]
 
 ```
 
