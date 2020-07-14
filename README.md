@@ -14,7 +14,10 @@
 
 ## ℹ️ Sobre
 
-o Projeto **GoBarber** é uma das aplicações feitas no bootcamp da rocketseat
+o Projeto **GoBarber** é uma das aplicações feitas no bootcamp da rocketseat, utilizando de boas praticas e conceitos solid. junto com testes automatizados.
+
+[![tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg)](https://github.com/facebook/jest)
+[![jest](https://jestjs.io/img/jest-badge.svg)](https://github.com/facebook/jest)
 
 ---
 
