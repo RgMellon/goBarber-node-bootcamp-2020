@@ -4,6 +4,7 @@ import AppError from '@shared/errors/AppError';
 import User from '@modules/users/infra/typeorm/entities/User';
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
+import { classToClass } from 'class-transformer';
 
 interface IRequest {
   user_id: string;
@@ -17,21 +18,24 @@ class ListProvidersService {
 
     @inject('CacheProvider')
     private cacheProvider: ICacheProvider,
-  ) { }
+  ) {}
 
   public async execute({ user_id }: IRequest): Promise<User[]> {
     let users = await this.cacheProvider.recover<User[]>(
       `providers-list:${user_id}`,
     );
 
+    // let users;
+
     if (!users) {
       users = await this.usersRepository.findAllProviders({
         exception_user_id: user_id,
       });
 
-      await this.cacheProvider.save(`providers-list:${user_id}`, users);
-      console.log('a query do banco foi feita');
-      console.log('a query do banco foi feita');
+      await this.cacheProvider.save(
+        `providers-list:${user_id}`,
+        classToClass(users),
+      );
     }
 
     return users;
