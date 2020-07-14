@@ -44,7 +44,7 @@ O projeto foi feito utilizando das seguines tecnologias
   $ npm install
 
   #executar o projeto
-  $ npm run start
+  $ npm run dev:server
 
   #criando imagem do postgres com o docker
   $ docker run --name nomeDatabase  -e POSTGRES_PASSWORD=1234 -p 5432:5432 -d postgres:11
