@@ -8,6 +8,7 @@
 - [Tecnologias utilizadas](#-tecnologias-utilizadas)
 - [Como baixar o projeto](#-como-baixar-o-projeto)
 - [Funcionalidades](#-Funcionalidades)
+- [Como usar](#-Como-usar)
 
 ---
 
